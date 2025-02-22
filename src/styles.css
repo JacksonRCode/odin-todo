@@ -96,6 +96,11 @@ h2.notes-header {
   margin: 0;
 }
 
+.sidebar-button,
+.notes-header-btn {
+  transition: all ease-in-out 0.1s;
+}
+
 .sidebar-button:hover,
 .notes-header-btn:hover {
   cursor: pointer;
@@ -106,6 +111,10 @@ h2.notes-header {
 }
 
 
+.sidebar-button:active,
+.notes-header-btn:active {
+  transform: scale(0.99);
+}
 
 .main {
   grid-area: main;
