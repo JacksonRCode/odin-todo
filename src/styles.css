@@ -68,7 +68,8 @@ header>h1 {
 
 .sidebar-header {
   font-size: 28px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--border);
 }
 
 .sidebar-button {
