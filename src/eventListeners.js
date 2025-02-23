@@ -57,7 +57,7 @@ function instantiateProject() {
   const projectName = document.createElement('input');
   projectName.setAttribute("type", "text");
   projectName.classList.add('form-input-text');
-  projectName.setAttribute('placeholder', 'Project Name: ')
+  projectName.setAttribute('placeholder', 'Project Title: ')
 
   formBody.appendChild(projectName);
 
@@ -93,23 +93,97 @@ function instantiateProject() {
 
   formBody.appendChild(projectCategory);
   formBody.appendChild(newCategory);
-
-  
-
-
-
 }
 
 function instantiateTask() {
   clearForm();
-
   setFormHeader('New Task');  
+
+  const formBody = document.querySelector('.form-input-body');
+
+  // Title
+
+  const taskName = document.createElement('input');
+  taskName.setAttribute("type", "text");
+  taskName.classList.add('form-input-text');
+  taskName.setAttribute('placeholder', 'Task Title: ')
+
+  formBody.appendChild(taskName);
+
+  // Description textarea
+
+  const taskDescription = document.createElement('textarea');
+  taskDescription.setAttribute('placeholder', 'Task Description: Max 300 characters');
+  taskDescription.setAttribute('maxlength', '300');
+
+  formBody.appendChild(taskDescription);
+
+  // Due date
+  const divDateContainer = document.createElement('div');
+  divDateContainer.classList.add('div-date-container');
+
+  const dateLabel = document.createElement('label');
+  dateLabel.textContent = "Due Date:";
+
+  const dateInput = document.createElement('input');
+  dateInput.setAttribute('type', 'date');
+  dateInput.classList.add('form-input-date');
+
+  divDateContainer.appendChild(dateLabel);
+  divDateContainer.appendChild(dateInput);
+
+
+  formBody.appendChild(divDateContainer);
+
+  // Priority
+
+  const divPriorityContainer = document.createElement('div');
+  divPriorityContainer.classList.add('div-priority-container');
+
+  const priorityLabel = document.createElement('label');
+  priorityLabel.textContent = "Priority:";
+
+  const priorityBtnDiv = document.createElement('div');
+  priorityBtnDiv.classList.add('priority-btn-container');
+
+  const lowBtn = document.createElement('button');
+  lowBtn.textContent = "Low";
+  const mediumBtn = document.createElement('button');
+  mediumBtn.textContent = "Medium";
+  const highBtn = document.createElement('button');
+  highBtn.textContent = "High";
+
+  lowBtn.classList.add('low-priority');
+  mediumBtn.classList.add('medium-priority');
+  highBtn.classList.add('high-priority');
+
+  priorityBtnDiv.appendChild(lowBtn);
+  priorityBtnDiv.appendChild(mediumBtn);
+  priorityBtnDiv.appendChild(highBtn);
+
+  divPriorityContainer.appendChild(priorityLabel);
+  divPriorityContainer.appendChild(priorityBtnDiv);
+
+
+  formBody.appendChild(divPriorityContainer);
+
+  
 }
 
 function instantiateNote() {
   clearForm(); 
-  
   setFormHeader('New Note');  
+
+  const formBody = document.querySelector('.form-input-body');
+
+  // Title
+
+  const noteName = document.createElement('input');
+  noteName.setAttribute("type", "text");
+  noteName.classList.add('form-input-text');
+  noteName.setAttribute('placeholder', 'Note Title: ')
+
+  formBody.appendChild(noteName);
 }
 
 function setFormHeader(value) {

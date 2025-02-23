@@ -305,7 +305,7 @@ h2.notes-header {
   border: none;
   background: transparent;
 
-  padding-left: 16px;
+  padding: 2px 2px 2px 16px;
 
   border-left: 1px solid var(--border);
 
@@ -321,7 +321,8 @@ h2.notes-header {
   outline: none;
 }
 
-.form-input-select {
+.form-input-select,
+textarea {
   border: none;
   border-left: 1px solid var(--border);
   background: transparent;
@@ -329,11 +330,83 @@ h2.notes-header {
 
   padding-left: 12px;
 
-  width: 300px;
+  width: 240px;
 }
 
-.form-input-select:focus {
+textarea {
+  padding-left: 16px;
+  resize: none;
+  width: 100%;
+  height: 100px;
+}
+
+textarea:focus {
   outline: none;
+}
+
+.div-date-container {
+  border-left: 1px solid var(--border);
+  padding: 2px 15px 2px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.form-input-date {
+  cursor: pointer;
+  /* width: 155px; */
+  background: transparent;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  padding: 2px 8px;
+  color: gray;
+}
+
+.form-input-select:focus,
+.form-input-date:focus {
+  outline: none;
+}
+
+.div-priority-container {
+  border-left: 1px solid var(--border);
+  padding: 2px 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+}
+
+.priority-btn-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  /* padding-left: 16.5px; */
+}
+
+.priority-btn-container > button {
+  cursor: pointer;
+
+  height: 32px;
+  width: 72px;
+  font-size: 16px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+
+  transition: all ease-in-out 0.1s;
+}
+
+.priority-btn-container > button:hover {
+  background-color: var(--pop);
+  outline: none;
+}
+
+.priority-btn-container > button:active {
+  transform: scale(0.99);
 }
 
 .pop {
