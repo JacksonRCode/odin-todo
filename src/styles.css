@@ -6,6 +6,7 @@
   --border: #0d3c5b;
   --darkFont: #1a1a1a;
   --lightFont: #ffffff;
+  --pop: #f28f3b;
 }
 
 body {
@@ -53,7 +54,7 @@ header>h1 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 24px;
+  gap: 16px;
 
   padding: 24px 32px;
 }
@@ -63,7 +64,7 @@ header>h1 {
 .note-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0px;
 }
 
 .sidebar-header {
@@ -95,6 +96,7 @@ header>h1 {
 
 h2.notes-header {
   margin: 0;
+  border: none;
 }
 
 .sidebar-button,
@@ -117,7 +119,243 @@ h2.notes-header {
   transform: scale(0.99);
 }
 
+.new-thing-container {
+  margin-top: auto;
+  margin-left: auto;
+  padding: 0;
+}
+
+.create-new-thing {
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 2px;
+
+  transition: all ease-in-out 0.1s;
+}
+
+.create-new-thing:hover {
+  cursor: pointer;
+  transform: scale(1.01); 
+  background-color: var(--background1);
+}
+
+.create-new-thing:active {
+  transform: scale(0.99);
+}
+
+.create-new-thing > img {
+  width: 64px;
+  height: 64px;
+}
+
 .main {
   grid-area: main;
   background-color: var(--background1);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 32px 64px;
 }
+
+.main-header {
+  width: 100%;
+  height: 80px;
+
+  display: flex;
+
+  background-color: var(--pop);
+
+  border-radius: 8px;
+}
+
+.newThingForm {
+  position: absolute;
+  top: calc(50% - 220px);
+  left: calc(50% - 440px);
+
+  width: 880px;
+  height: 440px;
+
+  display: grid;
+  grid-template-rows: auto 80px;
+
+  box-shadow: 0px 0px 20px var(--border);
+}
+
+.form-inputs {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  background-color: var(--background3);
+
+  display: grid;
+  grid-template-rows: 60px auto;
+
+  padding: 16px 32px;
+}
+
+.form-input-header {
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-input-header > h3 {
+  font-size: 24px;
+  color: var(--darkFont);
+}
+
+.exit-form {
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 2px;
+
+  height: 34px;
+  width: 36px;
+
+  transition: all ease-in-out 0.1s;
+}
+
+.exit-form > img {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+}
+
+.exit-form:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.exit-form:active {
+  transform: scale(0.99);
+}
+
+.form-input-body {
+  grid-row-start: 2;
+  grid-row-end: 3;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  font-size: 22px;
+  color: var(--darkFont);
+}
+
+.form-type {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  background-color: var(--background1);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0px 32px;
+}
+
+.type-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.form-btn {
+  width: 100px;
+  height: 40px;
+
+  background-color: var(--background3);
+  color: var(--darkFont);
+  border-radius: 4px;
+
+  transition: ease-in-out all 0.1s;
+}
+
+.form-btn:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  outline: none;
+}
+
+.form-btn:active {
+  transform: scale(0.99);
+}
+
+.type-project {
+  border: 2px solid var(--darkFont);
+}
+
+.type-task {
+  border: 2px solid var(--background2);
+}
+
+.type-note {
+  border: 2px solid var(--lightFont);
+}
+
+.type-create {
+  border: 2px solid var(--pop);
+}
+
+.form-input-text {
+  border: none;
+  background: transparent;
+
+  padding-left: 16px;
+
+  border-left: 1px solid var(--border);
+
+  color: var(--border);
+  
+}
+
+.form-input-text::placeholder {
+  color: gray;
+}
+
+.form-input-text:focus {
+  outline: none;
+}
+
+.form-input-select {
+  border: none;
+  border-left: 1px solid var(--border);
+  background: transparent;
+  color: gray;
+
+  padding-left: 12px;
+
+  width: 300px;
+}
+
+.form-input-select:focus {
+  outline: none;
+}
+
+.pop {
+  color: var(--border);
+}
+
+.label-input-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  padding-left: 16px;
+
+  border-left: 1px solid var(--border);
+}
+
+.invisible {
+  display: none;
+}
+
+.blurry {
+  filter: blur(3px);
+  opacity: 0.7;
+}
+

@@ -6,7 +6,7 @@
   <title>TO-DO</title>
 </head>
 <body>
-  <header>
+  <header class="header">
     <h1>To-Do</h1>
   </header>
   <div class="container">
@@ -36,7 +36,6 @@
             <button class="sidebar-button project-category">All Projects</button>
 
           </div>
-          <button class="sidebar-button new-project-button">New Project</button>
           
         </div>
 
@@ -48,8 +47,43 @@
         </button>
   
       </div>
+      <div class="new-thing-container">
+
+        <button class="create-new-thing">
+
+          <img src="../images/add-square-svgrepo-com.svg" alt="">
+
+        </button>
+
+      </div>
     </div>
-    <div class="main"></div>
+    <div class="main">
+      <div class="main-header"></div>
+    </div>
+  </div>
+
+  <div class="newThingForm invisible">
+
+    <div class="form-inputs">
+      <div class="form-input-header">
+        <h3 class="form-title">New...</h3>
+        <button class="exit-form">
+          <img src="../images/delete-svgrepo-com.svg" alt="">
+        </button>
+      </div>
+      <div class="form-input-body"></div>
+    </div>
+    <div class="form-type">
+      <div class="type-buttons">
+        <button class="type-project form-btn">Project</button>
+        <button class="type-task form-btn">Task</button>
+        <button class="type-note form-btn">Note</button>
+      </div>
+      <div class="form-submit">
+        <button class="type-create form-btn">Create</button>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>

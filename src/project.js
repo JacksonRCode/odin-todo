@@ -1,7 +1,10 @@
+export { createProject, ProjectManager, ProjectCategories };
 
-function createProject(title) {
+
+function createProject(title, category) {
   let _title = title;
   let _tasks = [];
+  let _category = category;
 
   const removeTask = (task) => {
     let found = 0;
@@ -19,6 +22,7 @@ function createProject(title) {
   return {
     getTitle: () => _title,
     getTasks: () => _tasks,
+    getCategory: () => _category,
 
     setTitle: ( newTitle ) => { _title = newTitle },
 
@@ -27,6 +31,8 @@ function createProject(title) {
     },
 
     removeTask,
+
+    setCategory: ( newCategory ) => { _category = newCategory },
   }
 }
 
@@ -53,8 +59,19 @@ const ProjectManager = {
 
   getTasks(project) {
     return project.getTasks();
-  }
+  },
+
+  getCategory(project) {
+    return project.getCategory();
+  },
+
+  setCategory(project, newCategory) {
+    project.setCategory(newCategory);
+  },
+
 }
+
+let ProjectCategories = ['Health', 'Work', 'Social'];
 
 // const apple = createProject('apple');
 
