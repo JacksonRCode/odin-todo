@@ -69,7 +69,7 @@ function instantiateProject() {
   projectCategory.setAttribute('name', 'category');
 
   projectCategory.onchange = () => {
-    projectCategory.classList.add('pop');
+    projectCategory.classList.add('colourME');
   };
 
   for (let i = -1; i < ProjectCategories.length; i++) {
@@ -153,6 +153,10 @@ function instantiateTask() {
   const highBtn = document.createElement('button');
   highBtn.textContent = "High";
 
+  lowBtn.addEventListener('click', (e) => { stickyButton(e)});
+  mediumBtn.addEventListener('click', (e) => { stickyButton(e)});
+  highBtn.addEventListener('click', (e) => { stickyButton(e)});
+
   lowBtn.classList.add('low-priority');
   mediumBtn.classList.add('medium-priority');
   highBtn.classList.add('high-priority');
@@ -196,4 +200,15 @@ function clearForm() {
   while (form.children.length > 0) {
     form.removeChild(form.firstChild);
   }
+}
+
+function stickyButton(e) {
+  const cont = document.querySelector('.priority-btn-container');
+
+  for ( let i = 0; i < cont.children.length; i++ ) {
+    cont.children[i].classList.remove('pop-bg');
+  }
+  
+  e.target.classList.add('pop-bg');
+  console.log(e.target);
 }

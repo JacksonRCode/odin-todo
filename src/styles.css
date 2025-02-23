@@ -285,20 +285,18 @@ h2.notes-header {
   transform: scale(0.99);
 }
 
-.type-project {
-  border: 2px solid var(--darkFont);
-}
-
-.type-task {
-  border: 2px solid var(--background2);
-}
-
-.type-note {
-  border: 2px solid var(--lightFont);
+.type-project,
+.type-task,
+.type-note,
+.type-create {
+  border: 2px solid var(--border);
+  font-size: 18px;
 }
 
 .type-create {
-  border: 2px solid var(--pop);
+  color: var(--pop);
+  font-weight: bold;
+  background-color: var(--background2);
 }
 
 .form-input-text {
@@ -409,8 +407,12 @@ textarea:focus {
   transform: scale(0.99);
 }
 
-.pop {
+.colourME {
   color: var(--border);
+}
+
+button.pop-bg { 
+  background-color: var(--pop);
 }
 
 .label-input-pair {
