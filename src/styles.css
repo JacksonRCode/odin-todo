@@ -294,9 +294,10 @@ h2.notes-header {
 }
 
 .type-create {
-  color: var(--pop);
+  color: var(--background1);
   font-weight: bold;
-  background-color: var(--background2);
+  background-color: var(--darkFont);
+  border: 1px solid var(--background1);
 }
 
 .form-input-text {

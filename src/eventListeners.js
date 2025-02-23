@@ -203,6 +203,11 @@ function clearForm() {
 }
 
 function stickyButton(e) {
+  /* 
+    Make priority button selection stick when creating a new task.
+
+    'pop-bg' will also be used to tell which priority has been chosen for the task.
+  */
   const cont = document.querySelector('.priority-btn-container');
 
   for ( let i = 0; i < cont.children.length; i++ ) {
