@@ -1,4 +1,4 @@
-import { ProjectCategories } from "./project";
+import { ProjectCategories, ProjectManager, createProject } from "./project";
 
 
 export default function createListeners() {
@@ -20,16 +20,7 @@ export default function createListeners() {
     /*
       Event listener for exit icon on the form to exit the form
     */
-    const container = document.querySelector('.container');
-    container.classList.remove('blurry');
-    const header = document.querySelector('.header');
-    header.classList.remove('blurry');
-
-    const divForm = document.querySelector('.newThingForm');
-    divForm.classList.add('invisible');
-
-    setFormHeader('New...');  
-    clearForm();
+    closeForm();
   });
 
   document.querySelector('.type-project').addEventListener('click', () => {
@@ -42,6 +33,30 @@ export default function createListeners() {
 
   document.querySelector('.type-note').addEventListener('click', () => {
     instantiateNote();
+  });
+
+  document.querySelector('.type-create').addEventListener('click', () => {
+    const type = document.querySelector('.form-title').textContent;
+
+    if (type === 'New Project') {
+      const title = document.querySelector('#project-title').value;
+      const categorySelection = document.querySelector('#category');
+      const newCategory = document.querySelector('#new-project-category');
+
+      let category = newCategory.value;
+
+      if (category === "") {
+        category = categorySelection.options[categorySelection.selectedIndex].value;
+      } 
+    
+      const proj = createProject(title, category);
+      
+      closeForm();
+    } else if (type === 'New Task') {
+      alert('task');
+    } else if (type === 'New Note') {
+      alert('note'); 
+    }
   });
 };
 
@@ -56,6 +71,8 @@ function instantiateProject() {
 
   const projectName = document.createElement('input');
   projectName.setAttribute("type", "text");
+  projectName.setAttribute("required", "true");
+  projectName.setAttribute("id", "project-title");
   projectName.classList.add('form-input-text');
   projectName.setAttribute('placeholder', 'Project Title: ')
 
@@ -88,6 +105,7 @@ function instantiateProject() {
 
   const newCategory = document.createElement('input');
   newCategory.setAttribute("type", "text");
+  newCategory.setAttribute("id", "new-project-category");
   newCategory.classList.add('form-input-text');
   newCategory.setAttribute('placeholder', 'Or, create new category: ');
 
@@ -105,6 +123,7 @@ function instantiateTask() {
 
   const taskName = document.createElement('input');
   taskName.setAttribute("type", "text");
+  taskName.setAttribute('id', 'task-title');
   taskName.classList.add('form-input-text');
   taskName.setAttribute('placeholder', 'Task Title: ')
 
@@ -114,6 +133,7 @@ function instantiateTask() {
 
   const taskDescription = document.createElement('textarea');
   taskDescription.classList.add('taskDescription');
+  taskDescription.setAttribute('id', 'task-description');
   taskDescription.setAttribute('placeholder', 'Task Description: Max 300 characters');
   taskDescription.setAttribute('maxlength', '300');
 
@@ -128,6 +148,7 @@ function instantiateTask() {
 
   const dateInput = document.createElement('input');
   dateInput.setAttribute('type', 'date');
+  dateInput.setAttribute('id', 'task-date');
   dateInput.classList.add('form-input-date');
 
   divDateContainer.appendChild(dateLabel);
@@ -185,6 +206,7 @@ function instantiateNote() {
 
   const noteName = document.createElement('input');
   noteName.setAttribute("type", "text");
+  noteName.setAttribute('id', 'note-title');
   noteName.classList.add('form-input-text');
   noteName.setAttribute('placeholder', 'Note Title: ')
 
@@ -194,6 +216,7 @@ function instantiateNote() {
 
   const noteDescription = document.createElement('textarea');
   noteDescription.classList.add('noteDescription');
+  noteDescription.setAttribute('id', 'note-description');
   noteDescription.setAttribute('placeholder', 'Note Description: Max 1000 characters');
   noteDescription.setAttribute('maxlength', '1000');
 
@@ -210,6 +233,19 @@ function clearForm() {
   while (form.children.length > 0) {
     form.removeChild(form.firstChild);
   }
+}
+
+function closeForm() {
+  const container = document.querySelector('.container');
+  container.classList.remove('blurry');
+  const header = document.querySelector('.header');
+  header.classList.remove('blurry');
+
+  const divForm = document.querySelector('.newThingForm');
+  divForm.classList.add('invisible');
+
+  setFormHeader('New...');  
+  clearForm();
 }
 
 function stickyButton(e) {
