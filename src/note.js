@@ -1,11 +1,12 @@
+export { createNote, NoteManager };
 
 function createNote(title, content) {
   let _title = title;
   let _content = content;
   
   return {
-    getTitle: () => { _title },
-    getContent: () => { _content  },
+    getTitle: () => _title,
+    getContent: () => _content,
 
     setTitle: (newTitle) => { _title = newTitle },
     setContent: (newContent) => { _content = newContent },

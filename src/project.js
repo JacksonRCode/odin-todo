@@ -77,16 +77,16 @@ const ProjectManager = {
 
 let ProjectCategories = ['Health', 'Work', 'Social'];
 
-const apple = createProject('apple', 'bees');
+// const apple = createProject('apple', 'bees');
 
-ProjectManager.changeTitle(apple, "Virginia");
+// ProjectManager.changeTitle(apple, "Virginia");
 
-console.log(ProjectManager.getTitle(apple));
+// console.log(ProjectManager.getTitle(apple));
 
-ProjectManager.addTask(apple, "Hey");
+// ProjectManager.addTask(apple, "Hey");
 
-console.log(ProjectManager.getTasks(apple));
+// console.log(ProjectManager.getTasks(apple));
 
-ProjectManager.removeTask(apple, "Hey");
+// ProjectManager.removeTask(apple, "Hey");
 
-console.log(ProjectManager.getTasks(apple));
+// console.log(ProjectManager.getTasks(apple));

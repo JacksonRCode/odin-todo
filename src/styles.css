@@ -335,6 +335,8 @@ textarea {
 textarea {
   padding-left: 16px;
   resize: none;
+
+  color: var(--border);
 }
 
 textarea:focus {
@@ -368,6 +370,14 @@ textarea:focus {
   border-radius: 8px;
 
   padding: 2px 8px;
+  color: gray;
+}
+
+input[type="date"] {
+  color: var(--border);
+}
+
+input[type="date"]::placeholder {
   color: gray;
 }
 

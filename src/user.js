@@ -1,5 +1,5 @@
 
-function User(name, projects, tasks, notes) {
+export default function createUser(name, projects, tasks, notes) {
   let _name = name;
   let _projects = projects;
   let _tasks = tasks;
@@ -47,6 +47,7 @@ function User(name, projects, tasks, notes) {
     }
   }
 
+
   const getProjects = () => {
     return _projects;
   }
@@ -66,6 +67,7 @@ function User(name, projects, tasks, notes) {
     removeProject,
     removeTask,
     removeNote,
+    getUserName: () => _name,
     getProjects,
     getTasks,
     getNotes

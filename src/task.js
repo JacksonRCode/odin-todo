@@ -1,3 +1,4 @@
+export { createTask, TaskManager };
 
 function createTask(title, description, dueDate, priority, complete) {
   /*

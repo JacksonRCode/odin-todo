@@ -1,7 +1,10 @@
 import { ProjectCategories, ProjectManager, createProject } from "./project";
+import { createTask, TaskManager } from "./task.js";
+import { createNote, NoteManager } from "./note.js";
 
 
-export default function createListeners() {
+export default function createListeners(user) {
+  
   document.querySelector('.create-new-thing').addEventListener('click', () => {
     /* 
       Event listener for [+] button to open form and create new thing
@@ -48,14 +51,42 @@ export default function createListeners() {
       if (category === "") {
         category = categorySelection.options[categorySelection.selectedIndex].value;
       } 
-    
-      const proj = createProject(title, category);
       
+      // Create project
+      const proj = createProject(title, category);
+
+      // Add project to user
+      user.addProject(proj);
+
       closeForm();
+
     } else if (type === 'New Task') {
-      alert('task');
+      const title = document.querySelector('#task-title').value;
+      const description = document.querySelector('#task-description').value;
+      const dueDate = document.querySelector('#task-date').value;
+      const priority = document.querySelector('.pop-bg').textContent;
+
+      // Create task
+      const task = createTask(title, description, dueDate, priority, false);
+
+      // Add task to user
+      user.addTask(task);
+
+      console.log(user.getTasks()[0].getPriority());
+
     } else if (type === 'New Note') {
-      alert('note'); 
+      const title = document.querySelector('#note-title').value;
+      console.log("Title: " + title);
+      const description = document.querySelector('#note-description').value;
+      console.log("Description: " + description);
+
+      // Create note
+      const note = createNote(title, description);
+
+      // Add note to user
+      user.addNote(note);
+
+      closeForm()
     }
   });
 };
@@ -261,5 +292,5 @@ function stickyButton(e) {
   }
   
   e.target.classList.add('pop-bg');
-  console.log(e.target);
+  // console.log(e.target);
 }
