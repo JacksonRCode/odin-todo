@@ -1,9 +1,9 @@
-import { ProjectCategories, ProjectManager, createProject } from "./project";
+import { ProjectCategories, ProjectManager, createProject } from "./project.js";
 import { createTask, TaskManager } from "./task.js";
 import { createNote, NoteManager } from "./note.js";
 
 
-export default function createListeners(user) {
+export default function createFormListeners(user) {
   
   document.querySelector('.create-new-thing').addEventListener('click', () => {
     /* 
