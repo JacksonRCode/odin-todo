@@ -335,12 +335,20 @@ textarea {
 textarea {
   padding-left: 16px;
   resize: none;
-  width: 100%;
-  height: 100px;
 }
 
 textarea:focus {
   outline: none;
+}
+
+.taskDescription {
+  width: 100%;
+  height: 100px;
+}
+
+.noteDescription {
+  width: 100%;
+  flex: 1;
 }
 
 .div-date-container {
@@ -425,6 +433,7 @@ button.pop-bg {
 
   border-left: 1px solid var(--border);
 }
+
 
 .invisible {
   display: none;

@@ -113,6 +113,7 @@ function instantiateTask() {
   // Description textarea
 
   const taskDescription = document.createElement('textarea');
+  taskDescription.classList.add('taskDescription');
   taskDescription.setAttribute('placeholder', 'Task Description: Max 300 characters');
   taskDescription.setAttribute('maxlength', '300');
 
@@ -188,6 +189,15 @@ function instantiateNote() {
   noteName.setAttribute('placeholder', 'Note Title: ')
 
   formBody.appendChild(noteName);
+
+  // Description textarea
+
+  const noteDescription = document.createElement('textarea');
+  noteDescription.classList.add('noteDescription');
+  noteDescription.setAttribute('placeholder', 'Note Description: Max 1000 characters');
+  noteDescription.setAttribute('maxlength', '1000');
+
+  formBody.appendChild(noteDescription)
 }
 
 function setFormHeader(value) {
