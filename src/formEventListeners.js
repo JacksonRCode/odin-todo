@@ -1,6 +1,6 @@
-import { ProjectCategories, ProjectManager, createProject } from "./project.js";
-import { createTask, TaskManager } from "./task.js";
-import { createNote, NoteManager } from "./note.js";
+import { ProjectCategories, createProject } from "./project.js";
+import { createTask } from "./task.js";
+import { createNote } from "./note.js";
 
 
 export default function createFormListeners(user) {
@@ -72,7 +72,9 @@ export default function createFormListeners(user) {
       // Add task to user
       user.addTask(task);
 
-      console.log(user.getTasks()[0].getPriority());
+      // console.log(user.getTasks()[0].getPriority());
+
+      closeForm()
 
     } else if (type === 'New Note') {
       const title = document.querySelector('#note-title').value;

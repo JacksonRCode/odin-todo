@@ -33,6 +33,21 @@ const TaskManager = {
     Centralized manager of tasks
   */ 
 
+  getTitle(task) {
+    return task.getTitle();
+  },
+  getDescription(task) {
+    return task.getDescription();
+  },
+  getDueDate(task) {
+    return task.getDueDate();
+  },
+  getPriority(task) {
+    return task.getPriority();
+  },
+  getComplete(task) {
+    return task.getComplete();
+  },
   changeTitle(task, value) {
     task.setTitle(value); 
   },

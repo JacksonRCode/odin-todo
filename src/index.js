@@ -4,7 +4,7 @@ import "./styles.css";
 
 import createUser from "./user";
 import createFormListeners from "./formEventListeners";
-import createBodyListeners from "./formEventListeners";
+import createBodyListeners from "./bodyEventListeners";
 
 const user1 = createUser("Jackson", [],[],[]);
 
