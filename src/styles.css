@@ -155,6 +155,7 @@ h2.notes-header {
 
   display: flex;
   flex-direction: column;
+  gap: 16px;
 
   padding: 32px 64px;
 }

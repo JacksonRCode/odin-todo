@@ -1,0 +1,45 @@
+
+:root {
+  --background1: #b3d8f0;
+  --background2: #3F88C5;
+  --background3: #e3f2fd;
+  --border: #0d3c5b;
+  --darkFont: #1a1a1a;
+  --lightFont: #ffffff;
+  --pop: #f28f3b;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-card-container {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 2px 8px;
+
+  background-color: var(--background3);
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  font-size: 18px;
+}
+
+.task-interior-container1 {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+
+  gap: 16px;
+}
+
+.task-interior-container2 {
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+}
