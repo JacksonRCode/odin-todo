@@ -11,7 +11,7 @@
 
 body {
   height: 100vh;
-  width: 100%;
+  max-width: 100vw;
   display: grid;
   /* grid-template-areas: "header content"; */
   grid-template-rows: 80px auto;
@@ -42,8 +42,10 @@ header>h1 {
   grid-row-end: 3;
 
   display: grid;
+  max-width: 100vw;
+  width: 100%;
   grid-template-areas: "sidebar main";
-  grid-template-columns: 25vw auto;
+  grid-template-columns: 25vw 75vw;
 }
 
 .sidebar {
@@ -152,6 +154,7 @@ h2.notes-header {
 .main {
   grid-area: main;
   background-color: var(--background1);
+  width: 100%;
 
   display: flex;
   flex-direction: column;

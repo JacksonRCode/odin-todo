@@ -10,10 +10,12 @@ import { createTask } from "./task";
 
 const user1 = createUser("Jackson", [],[],[]);
 
-const task1 = createTask("Shower", "Water", "2025-02-25", "Low", false);
-const task2 = createTask("Eat", "Food", "2025-02-25", "Medium", false);
-const task3 = createTask("Work", "AHH", "2025-02-25", "High", false);
-const task4 = createTask("Workout", "IRON", "2025-02-25", "High", false);
+const currentDate = (new Date()).toISOString().split('T')[0];
+
+const task1 = createTask("Shower", "Water", currentDate, "Low", false);
+const task2 = createTask("Eat", "Food", currentDate, "Medium", false);
+const task3 = createTask("Work", "AHH", currentDate, "High", false);
+const task4 = createTask("Workout", "IRON", currentDate, "High", false);
 
 // Add task to user
 user1.addTask(task1);

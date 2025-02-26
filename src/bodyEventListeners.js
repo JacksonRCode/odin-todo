@@ -5,6 +5,7 @@ import { createNote, NoteManager } from "./note.js";
 export default function createBodyListeners(user) {
   document.querySelector('.today').addEventListener('click', () => {
     clearBody();
+    document.querySelector('.main-body-header').textContent = "Today's Tasks";
 
     // Listener for displaying today's tasks  
     const tasks = user.getTasks();
@@ -13,7 +14,7 @@ export default function createBodyListeners(user) {
     const currentDate = (new Date()).toISOString().split('T')[0];
     const today = new Date(currentDate);
     const todayTime = today.getTime();
-    
+    let index = 0;
     for (let i = 0; i < tasks.length; i++) {
       // Calculate # days until task is due
       let task = tasks[i];
@@ -26,31 +27,8 @@ export default function createBodyListeners(user) {
     
       // Add to body if due today
       if (days === 0) {
-
-        // Get template
-        const temp = document.querySelector('#task-element');
-
-        // Clone template
-        const taskDiv = temp.content.cloneNode(true);
-
-        // Task title 
-        taskDiv.querySelector('.task-card-title').textContent = TaskManager.getTitle(task);
-
-        // Task dueDate
-        taskDiv.querySelector('.task-card-dueDate').textContent = "Due: " + dueDate;
-
-        // Task Priority
-        taskDiv.querySelector('.task-card-priority').textContent = "Priority: " + TaskManager.getPriority(task);
-
-        // Task description
-        // const taskDescription = document.createElement('p');
-        // taskDescription.textContent = TaskManager.getDescription(task);
-        
-        // Task container
-
-        
-
-        document.querySelector('.main-content').appendChild(taskDiv);
+         createTaskCard(task, index, user);
+         index++;
       } 
     }  
   });
@@ -77,4 +55,52 @@ function clearBody() {
   while (content.children.length > 0) {
     content.removeChild(content.firstChild);
   }
+}
+
+function createTaskCard(task, index, user) {
+  console.log('here');
+  // Get template
+  const temp = document.querySelector('#task-element');
+
+  // Clone template
+  const taskDiv = temp.content.cloneNode(true);
+
+  // const value = 'instance-num-' + index;
+
+  // taskDiv.querySelector('.task-card-container').classList.add('instance-num-' + index);
+  
+
+  // Task title 
+  taskDiv.querySelector('.task-card-title').textContent = TaskManager.getTitle(task);
+
+  // Task dueDate
+  taskDiv.querySelector('.task-card-dueDate').textContent =  TaskManager.getDueDate(task);
+
+  // Task Priority
+  taskDiv.querySelector('.task-card-priority').textContent = TaskManager.getPriority(task);
+
+  // Task description
+  taskDiv.querySelector('.task-card-description').textContent = TaskManager.getDescription(task);
+
+  // Dropdown listener
+  const dd = taskDiv.querySelector('.section-two');
+
+  taskDiv.querySelector('.dropdown').addEventListener('click', () => {
+    // const target = taskDiv.querySelector('.section-two');
+    if (dd.classList.contains('invisible')) { dd.classList.remove('invisible'); }
+    else {dd.classList.add('invisible');}
+  });
+
+  // Checkbox listener
+  const checkbox = taskDiv.querySelector('#task-complete');
+
+  checkbox.checked = TaskManager.getComplete(task);
+
+  checkbox.addEventListener('click', () => {
+    const copy = task;
+    TaskManager.markComplete(task);
+    user.updateTask(copy, task);
+  });
+  
+  document.querySelector('.main-content').appendChild(taskDiv);
 }

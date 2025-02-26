@@ -61,11 +61,12 @@ const TaskManager = {
     task.setPriority(task, value);
   },
   markComplete(task) {
-    task.setComplete(true);
+    if (task.getComplete() === true) {
+      task.setComplete(false);
+    } else {
+      task.setComplete(true);
+    }
   },
-  markIncomplete(task) {
-    task.setComplete(false);
-  }
 }
 
 // const shower = createTask('Shower', "Go to bathroom and scrub the pits","today","high", 0);

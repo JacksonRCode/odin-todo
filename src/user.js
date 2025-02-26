@@ -47,6 +47,29 @@ export default function createUser(name, projects, tasks, notes) {
     }
   }
 
+  const updateProject = (copy, project) => {
+    for (let i = 0; i < _projects.length; i++) {
+      if (_projects[i] === copy) {
+        _projects[i] = project;
+        return;
+      }
+    }
+  }
+  const updateTask = (copy, task) => {
+    for (let i = 0; i < _tasks.length; i++) {
+      if (_tasks[i] === copy) {
+        _tasks[i] = task;
+      }
+    }
+  }
+  const updateNote = (copy, note) => {
+    for (let i = 0; i < _notes.length; i++) {
+      if (_notes[i] === copy) {
+        _notes[i] = note;
+      }
+    }
+
+  }
 
   const getProjects = () => {
     return _projects;
@@ -64,13 +87,18 @@ export default function createUser(name, projects, tasks, notes) {
     addProject,
     addTask,
     addNote,
+    
     removeProject,
     removeTask,
     removeNote,
     getUserName: () => _name,
     getProjects,
     getTasks,
-    getNotes
+    getNotes,
+
+    updateProject,  
+    updateTask,
+    updateNote, 
   }
 }
 

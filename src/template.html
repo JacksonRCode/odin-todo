@@ -58,7 +58,9 @@
       </div>
     </div>
     <div class="main">
-      <div class="main-header"></div>
+      <div class="main-header">
+        <h1 class="main-body-header"></h1>
+      </div>
       <div class="main-content"></div>
     </div>
   </div>
@@ -88,15 +90,24 @@
   </div>
   <template id="task-element">
     <div class="task-card-container">
-      <p class="task-card-title">yo</p>
-      <div class="task-interior-container1">
-        <div class="task-interior-container2">
-          <p class="task-card-dueDate"></p>
-          <p class="task-card-priority"></p>
+      <div class="section-one">
+        <div class="task-title-check">
+          <input type="checkbox" id="task-complete"></input>
+          <p class="task-card-title"></p>
         </div>
-        <p class="dropdown">v</p>
+        <div class="task-interior-container1">
+          <div class="task-interior-container2">
+            <p class="task-card-dueDate"></p>
+            <p class="task-card-priority"></p>
+          </div>
+          <p class="dropdown" disabled>Info</p>    
+        </div>
+      </div>
+      <div class="section-two invisible">
+        <p class="task-card-description"></p>
       </div>
     </div>
+    
   </template>
 </body>
 </html>
