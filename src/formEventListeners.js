@@ -1,6 +1,7 @@
 import { ProjectCategories, createProject } from "./project.js";
 import { createTask } from "./task.js";
 import { createNote } from "./note.js";
+import { displayProjectTasks } from "./bodyEventListeners.js";
 
 
 export default function createFormListeners(user) {
@@ -44,20 +45,45 @@ export default function createFormListeners(user) {
 
     if (type === 'New Project') {
       const title = document.querySelector('#project-title').value;
-      const categorySelection = document.querySelector('#category');
-      const newCategory = document.querySelector('#new-project-category');
+      // const categorySelection = document.querySelector('#category');
+      // const newCategory = document.querySelector('#new-project-category');
 
-      let category = newCategory.value;
+      // let category = newCategory.value;
 
-      if (category === "") {
-        category = categorySelection.options[categorySelection.selectedIndex].value;
-      } 
+      // if (category === "") {
+      //   category = categorySelection.options[categorySelection.selectedIndex].value;
+      // } 
       
       // Create project
-      const proj = createProject(title, category);
+      const proj = createProject(title, null);
 
       // Add project to user
       user.addProject(proj);
+
+      const newProject = document.createElement('button');
+      newProject.classList.add('sidebar-button');
+      newProject.classList.add('project-category');
+      newProject.textContent = title;
+
+      // Add event listener for newProject
+      newProject.addEventListener('click', () => {
+        // Display all current tasks
+        
+        // Get all sidebar buttons and remove current class from current
+        const btns = document.querySelectorAll('.sidebar-button');
+
+        for (let i = 0; i < btns.length; i++) {
+          let curr = btns[i];
+          curr.classList.remove('sidebar-current');
+        }
+
+        newProject.classList.add('sidebar-current');
+
+        displayProjectTasks(proj, user);
+      });
+
+      document.querySelector('.project-categories').appendChild(newProject);
+
 
       change = true;
 
@@ -132,39 +158,39 @@ function instantiateProject() {
 
   formBody.appendChild(projectName);
 
-  // Project Category
+  // // Project Category
 
-  const projectCategory = document.createElement('select');
-  projectCategory.classList.add('form-input-select');
-  projectCategory.setAttribute('id', 'category');
-  projectCategory.setAttribute('name', 'category');
+  // const projectCategory = document.createElement('select');
+  // projectCategory.classList.add('form-input-select');
+  // projectCategory.setAttribute('id', 'category');
+  // projectCategory.setAttribute('name', 'category');
 
-  projectCategory.onchange = () => {
-    projectCategory.classList.add('colourME');
-  };
+  // projectCategory.onchange = () => {
+  //   projectCategory.classList.add('colourME');
+  // };
 
-  for (let i = -1; i < ProjectCategories.length; i++) {
-    let op = document.createElement('option');
-    if (i === -1) {
-      op.setAttribute('disabled', 'true');
-      op.setAttribute('selected', 'true');
-      op.setAttribute('value', 'none');
-      op.textContent = "Select project category";
-    } else {
-      op.setAttribute('value', ProjectCategories[i]);
-      op.textContent = ProjectCategories[i];
-    }
-    projectCategory.appendChild(op);
-  }
+  // for (let i = -1; i < ProjectCategories.length; i++) {
+  //   let op = document.createElement('option');
+  //   if (i === -1) {
+  //     op.setAttribute('disabled', 'true');
+  //     op.setAttribute('selected', 'true');
+  //     op.setAttribute('value', 'none');
+  //     op.textContent = "Select project category";
+  //   } else {
+  //     op.setAttribute('value', ProjectCategories[i]);
+  //     op.textContent = ProjectCategories[i];
+  //   }
+  //   projectCategory.appendChild(op);
+  // }
 
-  const newCategory = document.createElement('input');
-  newCategory.setAttribute("type", "text");
-  newCategory.setAttribute("id", "new-project-category");
-  newCategory.classList.add('form-input-text');
-  newCategory.setAttribute('placeholder', 'Or, create new category: ');
+  // const newCategory = document.createElement('input');
+  // newCategory.setAttribute("type", "text");
+  // newCategory.setAttribute("id", "new-project-category");
+  // newCategory.classList.add('form-input-text');
+  // newCategory.setAttribute('placeholder', 'Or, create new category: ');
 
-  formBody.appendChild(projectCategory);
-  formBody.appendChild(newCategory);
+  // formBody.appendChild(projectCategory);
+  // formBody.appendChild(newCategory);
 }
 
 function instantiateTask() {

@@ -100,3 +100,7 @@
   background-color: var(--background2);
   transform: scale(1.01);
 }
+
+.emptyProject {
+  font-size: 24px;
+}

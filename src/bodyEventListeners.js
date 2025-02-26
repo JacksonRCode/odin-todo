@@ -1,11 +1,14 @@
 import { ProjectCategories, ProjectManager, createProject } from "./project.js";
 import { createTask, TaskManager } from "./task.js";
 import { createNote, NoteManager } from "./note.js";
+export { displayProjectTasks};
 
 export default function createBodyListeners(user) {
   document.querySelector('.today').addEventListener('click', () => {
     clearBody();
     document.querySelector('.main-body-header').textContent = "Today's Tasks";
+
+    setCurrent(document.querySelector('.today'));
 
     // Listener for displaying today's tasks  
     const tasks = user.getTasks();
@@ -17,6 +20,8 @@ export default function createBodyListeners(user) {
     clearBody();
     document.querySelector('.main-body-header').textContent = "Weekly Tasks";
 
+    setCurrent(document.querySelector('.week'));
+
     // Listener for displaying today's tasks  
     const tasks = user.getTasks();
 
@@ -26,6 +31,8 @@ export default function createBodyListeners(user) {
     // Listener for displaying month's tasks
     clearBody();
     document.querySelector('.main-body-header').textContent = "Monthly Tasks";
+
+    setCurrent(document.querySelector('.month'));
 
     // Listener for displaying today's tasks  
     const tasks = user.getTasks();
@@ -37,6 +44,8 @@ export default function createBodyListeners(user) {
     clearBody();
     document.querySelector('.main-body-header').textContent = "Critical Tasks";
 
+    setCurrent(document.querySelector('.critical'));
+
     // Listener for displaying today's tasks  
     const tasks = user.getTasks();
 
@@ -47,16 +56,15 @@ export default function createBodyListeners(user) {
     
       // Add to body if due today
       if (TaskManager.getPriority(task) === "High") {
-        createTaskCard(task, index, user);
+        createTaskCard(task, user);
         index++;
       }
     }
   });
-  document.querySelector('.all-projects').addEventListener('click', () =>  {
-    // Listener for displaying all projects
-  });
   document.querySelector('.notes-header').addEventListener('click', () => {
     // Listener for displaying all notes 
+
+    setCurrent(document.querySelector('.notes-header'));
   });
 }
 
@@ -86,13 +94,40 @@ function pumpOutTasks(tasks, max, user) {
   
     // Add to body if due today
     if (days <= max) {
-       createTaskCard(task, index, user);
+       createTaskCard(task, user);
        index++;
     } 
   }  
 }
 
-function createTaskCard(task, index, user) {
+function displayProjectTasks(proj, user) {
+  clearBody();
+  const title = TaskManager.getTitle(proj);
+
+  document.querySelector('.main-body-header').textContent = title;
+
+  const tasks = ProjectManager.getTasks(proj);
+
+  let l = tasks.length;
+
+  if (l === 0) {
+    const emptyMessage = document.createElement('p');
+    emptyMessage.classList.add('emptyProject');
+    emptyMessage.textContent = "This project has no current tasks."
+    document.querySelector('.main-content').appendChild(emptyMessage);
+
+    const emptyMessage2 = document.createElement('p');
+    emptyMessage2.classList.add('emptyProject');
+    emptyMessage2.textContent = "To add a task, create a new one while this page is open."
+    document.querySelector('.main-content').appendChild(emptyMessage2);
+  }
+
+  for (let i = 0; i < l; i++) {
+    createTaskCard(tasks[i], user);
+  }
+} 
+
+function createTaskCard(task, user) {
   // Get template
   const temp = document.querySelector('#task-element');
 
@@ -137,4 +172,15 @@ function createTaskCard(task, index, user) {
   });
   
   document.querySelector('.main-content').appendChild(taskDiv);
+}
+
+function setCurrent(thisOne) {
+  const btns = document.querySelectorAll('.sidebar-button');
+
+  for (let i = 0; i < btns.length; i++) {
+    let curr = btns[i];
+    curr.classList.remove('sidebar-current');
+  }
+
+  thisOne.classList.add('sidebar-current');
 }
