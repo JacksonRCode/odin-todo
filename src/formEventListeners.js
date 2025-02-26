@@ -40,6 +40,7 @@ export default function createFormListeners(user) {
 
   document.querySelector('.type-create').addEventListener('click', () => {
     const type = document.querySelector('.form-title').textContent;
+    let change = false;
 
     if (type === 'New Project') {
       const title = document.querySelector('#project-title').value;
@@ -58,7 +59,7 @@ export default function createFormListeners(user) {
       // Add project to user
       user.addProject(proj);
 
-      closeForm();
+      change = true;
 
     } else if (type === 'New Task') {
       const title = document.querySelector('#task-title').value;
@@ -74,7 +75,7 @@ export default function createFormListeners(user) {
 
       // console.log(user.getTasks()[0].getPriority());
 
-      closeForm()
+      change = true;
 
     } else if (type === 'New Note') {
       const title = document.querySelector('#note-title').value;
@@ -88,8 +89,28 @@ export default function createFormListeners(user) {
       // Add note to user
       user.addNote(note);
 
-      closeForm()
+      change = true;
     }
+
+    if (change) {
+      closeForm();
+      // Simulate clicking and re-loading content
+      const headerContent = document.querySelector('.main-body-header').textContent;
+
+      if (headerContent === "Today's Tasks") {
+        document.querySelector('.today').click();
+      } 
+      else if (headerContent === "Weekly Tasks") {
+        document.querySelector('.week').click();
+      } 
+      else if (headerContent === "Monthly Tasks") {
+        document.querySelector('.month').click();
+      } 
+      else if (headerContent === "Critical Tasks") {  
+        document.querySelector('.critical').click();
+      }
+    }
+    
   });
 };
 

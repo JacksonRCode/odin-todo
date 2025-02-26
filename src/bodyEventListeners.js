@@ -10,36 +10,47 @@ export default function createBodyListeners(user) {
     // Listener for displaying today's tasks  
     const tasks = user.getTasks();
 
-    // Create date object and format to yyyy-mm-dd
-    const currentDate = (new Date()).toISOString().split('T')[0];
-    const today = new Date(currentDate);
-    const todayTime = today.getTime();
+    pumpOutTasks(tasks, 0, user);
+  });
+  document.querySelector('.week').addEventListener('click', () =>  {
+    // Listener for displaying week's tasks
+    clearBody();
+    document.querySelector('.main-body-header').textContent = "Weekly Tasks";
+
+    // Listener for displaying today's tasks  
+    const tasks = user.getTasks();
+
+    pumpOutTasks(tasks, 7, user)
+  });
+  document.querySelector('.month').addEventListener('click', () =>   {
+    // Listener for displaying month's tasks
+    clearBody();
+    document.querySelector('.main-body-header').textContent = "Monthly Tasks";
+
+    // Listener for displaying today's tasks  
+    const tasks = user.getTasks();
+
+    pumpOutTasks(tasks, 30, user)
+  });
+  document.querySelector('.critical').addEventListener('click', () =>  {
+    // Listener for displaying critical tasks 
+    clearBody();
+    document.querySelector('.main-body-header').textContent = "Critical Tasks";
+
+    // Listener for displaying today's tasks  
+    const tasks = user.getTasks();
+
     let index = 0;
     for (let i = 0; i < tasks.length; i++) {
       // Calculate # days until task is due
       let task = tasks[i];
-
-      let dueDate = TaskManager.getDueDate(task);
-      let taskDate = new Date(dueDate);
-      let difference = taskDate.getTime() - todayTime;
-
-      let days = Math.round(difference / (1000*3600*24));
     
       // Add to body if due today
-      if (days === 0) {
-         createTaskCard(task, index, user);
-         index++;
-      } 
-    }  
-  });
-  document.querySelector('.week').addEventListener('click', () =>  {
-    // Listener for displaying week's tasks
-  });
-  document.querySelector('.month').addEventListener('click', () =>   {
-    // Listener for displaying month's tasks
-  });
-  document.querySelector('.critical').addEventListener('click', () =>  {
-    // Listener for displaying critical tasks 
+      if (TaskManager.getPriority(task) === "High") {
+        createTaskCard(task, index, user);
+        index++;
+      }
+    }
   });
   document.querySelector('.all-projects').addEventListener('click', () =>  {
     // Listener for displaying all projects
@@ -57,8 +68,31 @@ function clearBody() {
   }
 }
 
+function pumpOutTasks(tasks, max, user) {
+  // Create date object and format to yyyy-mm-dd
+  const currentDate = (new Date()).toISOString().split('T')[0];
+  const today = new Date(currentDate);
+  const todayTime = today.getTime();
+  let index = 0;
+  for (let i = 0; i < tasks.length; i++) {
+    // Calculate # days until task is due
+    let task = tasks[i];
+
+    let dueDate = TaskManager.getDueDate(task);
+    let taskDate = new Date(dueDate);
+    let difference = taskDate.getTime() - todayTime;
+
+    let days = Math.round(difference / (1000*3600*24));
+  
+    // Add to body if due today
+    if (days <= max) {
+       createTaskCard(task, index, user);
+       index++;
+    } 
+  }  
+}
+
 function createTaskCard(task, index, user) {
-  console.log('here');
   // Get template
   const temp = document.querySelector('#task-element');
 
