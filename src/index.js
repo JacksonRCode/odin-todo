@@ -27,3 +27,5 @@ user1.addTask(task4);
 
 createBodyListeners(user1);
 createFormListeners(user1);
+
+document.querySelector('.tasks-header').click();

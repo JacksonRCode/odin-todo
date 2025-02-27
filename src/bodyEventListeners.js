@@ -61,10 +61,38 @@ export default function createBodyListeners(user) {
       }
     }
   });
+
+  document.querySelector('.tasks-header').addEventListener('click', () => {
+    // Display all tasks
+    clearBody();
+    setCurrent(document.querySelector('.tasks-header'));
+
+    document.querySelector('.main-body-header').textContent = "All Tasks";
+    
+    const tasks = user.getTasks();
+
+    for (let i = 0; i < tasks.length; i++) {
+
+      createTaskCard(tasks[i], user);
+    }
+
+
+  })
+
   document.querySelector('.notes-header').addEventListener('click', () => {
     // Listener for displaying all notes 
-
+    clearBody();
     setCurrent(document.querySelector('.notes-header'));
+
+    document.querySelector('.main-body-header').textContent = "Notes";
+    
+    const notes = user.getNotes();
+
+    for (let i = 0; i < notes.length; i++) {
+      console.log("here");
+    }
+
+
   });
 }
 
@@ -181,6 +209,6 @@ function setCurrent(thisOne) {
     let curr = btns[i];
     curr.classList.remove('sidebar-current');
   }
-
+  
   thisOne.classList.add('sidebar-current');
 }

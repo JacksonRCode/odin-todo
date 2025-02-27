@@ -89,7 +89,7 @@ export default function createFormListeners(user) {
 
     } else if (type === 'New Task') {
       const title = document.querySelector('#task-title').value;
-      const description = document.querySelector('#task-description').value;
+      const description = document.querySelector('#task-description').value || '';
       const dueDate = document.querySelector('#task-date').value;
       const priority = document.querySelector('.pop-bg').textContent;
 
@@ -151,6 +151,9 @@ export default function createFormListeners(user) {
       else if (headerContent === "Critical Tasks") {  
         document.querySelector('.critical').click();
       }
+      else if (headerContent === "All Tasks") {
+        document.querySelector('.tasks-header').click();
+      }
     }
     
   });
@@ -173,40 +176,6 @@ function instantiateProject() {
   projectName.setAttribute('placeholder', 'Project Title: ')
 
   formBody.appendChild(projectName);
-
-  // // Project Category
-
-  // const projectCategory = document.createElement('select');
-  // projectCategory.classList.add('form-input-select');
-  // projectCategory.setAttribute('id', 'category');
-  // projectCategory.setAttribute('name', 'category');
-
-  // projectCategory.onchange = () => {
-  //   projectCategory.classList.add('colourME');
-  // };
-
-  // for (let i = -1; i < ProjectCategories.length; i++) {
-  //   let op = document.createElement('option');
-  //   if (i === -1) {
-  //     op.setAttribute('disabled', 'true');
-  //     op.setAttribute('selected', 'true');
-  //     op.setAttribute('value', 'none');
-  //     op.textContent = "Select project category";
-  //   } else {
-  //     op.setAttribute('value', ProjectCategories[i]);
-  //     op.textContent = ProjectCategories[i];
-  //   }
-  //   projectCategory.appendChild(op);
-  // }
-
-  // const newCategory = document.createElement('input');
-  // newCategory.setAttribute("type", "text");
-  // newCategory.setAttribute("id", "new-project-category");
-  // newCategory.classList.add('form-input-text');
-  // newCategory.setAttribute('placeholder', 'Or, create new category: ');
-
-  // formBody.appendChild(projectCategory);
-  // formBody.appendChild(newCategory);
 }
 
 function instantiateTask() {
@@ -222,6 +191,7 @@ function instantiateTask() {
   taskName.setAttribute('id', 'task-title');
   taskName.classList.add('form-input-text');
   taskName.setAttribute('placeholder', 'Task Title: ')
+  taskName.setAttribute('required', 'true');
 
   formBody.appendChild(taskName);
 
@@ -276,6 +246,7 @@ function instantiateTask() {
   highBtn.addEventListener('click', (e) => { stickyButton(e)});
 
   lowBtn.classList.add('low-priority');
+  lowBtn.classList.add('pop-bg');
   mediumBtn.classList.add('medium-priority');
   highBtn.classList.add('high-priority');
 

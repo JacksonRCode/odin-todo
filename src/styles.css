@@ -69,12 +69,6 @@ header>h1 {
   gap: 0px;
 }
 
-.sidebar-header {
-  font-size: 28px;
-  margin-bottom: 8px;
-  border-bottom: 2px solid var(--border);
-}
-
 .sidebar-button {
   font-size: 20px;
   text-align: left;
@@ -88,12 +82,21 @@ header>h1 {
   background-color: var(--background3);
 }
 
+.sidebar-header {
+  font-size: 28px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  border-radius: 0px;
+  padding: 0px 0px 0px 8px;
+  margin-left: -8px;
+}
+
 .notes-header-btn {
   text-align: left;
   border: none;
   outline: none;
   padding: 0 0 0 8px;
-  margin-left: -8px;
+  margin-left: -16px;
   background-color: var(--background3);
 }
 
@@ -108,7 +111,7 @@ h2.notes-header {
 }
 
 .sidebar-button:hover,
-.notes-header-btn:hover {
+.notes-header:hover {
   cursor: pointer;
   outline: none;
 
