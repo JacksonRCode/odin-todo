@@ -85,14 +85,8 @@ export default function createBodyListeners(user) {
     setCurrent(document.querySelector('.notes-header'));
 
     document.querySelector('.main-body-header').textContent = "Notes";
-    
-    const notes = user.getNotes();
 
-    for (let i = 0; i < notes.length; i++) {
-      console.log("here");
-    }
-
-
+    displayNotes(user);
   });
 }
 
@@ -200,6 +194,28 @@ function createTaskCard(task, user) {
   });
   
   document.querySelector('.main-content').appendChild(taskDiv);
+}
+
+function displayNotes(user) {
+  const notes = user.getNotes();
+
+  for (let i = 0; i < notes.length; i++) {
+    const title = NoteManager.getTitle(notes[i]);
+    const description = NoteManager.getContent(notes[i]);
+
+    // Get note template
+    const temp = document.querySelector('#note-element');
+
+    // Clone template
+    const noteDiv = temp.content.cloneNode(true);
+
+    noteDiv.querySelector('.note-card-title').textContent = title;
+    noteDiv.querySelector('.note-card-description').textContent = description;
+    
+    document.querySelector('.main-content').appendChild(noteDiv);
+  }
+
+
 }
 
 function setCurrent(thisOne) {

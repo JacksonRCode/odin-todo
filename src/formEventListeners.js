@@ -154,6 +154,9 @@ export default function createFormListeners(user) {
       else if (headerContent === "All Tasks") {
         document.querySelector('.tasks-header').click();
       }
+      else if (headerContent === "Notes") {
+        document.querySelector('.notes-header').click();
+      }
     }
     
   });
