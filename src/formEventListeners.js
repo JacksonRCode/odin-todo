@@ -1,4 +1,4 @@
-import { ProjectCategories, createProject } from "./project.js";
+import { ProjectCategories, createProject, ProjectManager } from "./project.js";
 import { createTask } from "./task.js";
 import { createNote } from "./note.js";
 import { displayProjectTasks } from "./bodyEventListeners.js";
@@ -98,6 +98,22 @@ export default function createFormListeners(user) {
 
       // Add task to user
       user.addTask(task);
+
+      // Check to add task to project
+      const checkProject = document.querySelector('.sidebar-current');
+
+      if (checkProject.classList.contains('project-category')) {
+        const projects = user.getProjects();
+
+        const projTitle = checkProject.textContent;
+
+        for (let i = 0; i < projects.length; i++) {
+          if (ProjectManager.getTitle(projects[i]) === projTitle) {
+            ProjectManager.addTask(projects[i], task);
+            document.querySelector('.sidebar-current').click();
+          }
+        }
+      }
 
       // console.log(user.getTasks()[0].getPriority());
 

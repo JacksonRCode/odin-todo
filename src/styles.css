@@ -172,6 +172,9 @@ h2.notes-header {
   height: 80px;
 
   display: flex;
+  align-items: center;
+
+  padding: 16px 32px;
 
   background-color: var(--pop);
 
