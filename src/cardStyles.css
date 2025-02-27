@@ -38,9 +38,41 @@
   font-size: 18px;
 }
 
+.note-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border);
+
+}
+
 .note-card-title {
   font-size: 24px; 
-  border-bottom: 1px solid var(--border);
+}
+
+.delete-note {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: all ease-in-out 2ms;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.delete-note > img {
+  width: 20px;
+  height: 20px;
+}
+
+.delete-note:hover {
+  background-color: var(--pop);
+}
+
+.delete-note:active {
+  transform: scale(0.98);
 }
 
 .note-card-description {

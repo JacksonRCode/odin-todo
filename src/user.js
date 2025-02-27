@@ -18,6 +18,7 @@ export default function createUser(name, projects, tasks, notes) {
   }
 
   const removeProject = (project) => {
+    let found = 0;
     for (let i = 0; i < projects.length; i++) {
       if (_projects[i] === project) {
         found = 1;
@@ -25,9 +26,13 @@ export default function createUser(name, projects, tasks, notes) {
       
       _projects[i] = _projects[i+found];
     }
+    if (found) {
+      _projects.pop();
+    }
   }
 
   const removeTask = (task) => {
+    let found = 0;
     for (let i = 0; i < _tasks.length; i++) {
       if (_tasks[i] === task) {
         found = 1;
@@ -35,15 +40,22 @@ export default function createUser(name, projects, tasks, notes) {
       
       _tasks[i] = _tasks[i+found];
     }
+    if (found) {
+      _tasks.pop();
+    }
   }
 
   const removeNote = (note) => {
+    let found = 0;
     for (let i = 0; i < _notes.length; i++) {
       if (_notes[i] === note) {
         found = 1;
       };
       
       _notes[i] = _notes[i+found];
+    }
+    if (found) {
+      _notes.pop();
     }
   }
 

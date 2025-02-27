@@ -78,7 +78,6 @@ export default function createBodyListeners(user) {
 
 
   })
-
   document.querySelector('.notes-header').addEventListener('click', () => {
     // Listener for displaying all notes 
     clearBody();
@@ -211,6 +210,10 @@ function displayNotes(user) {
 
     noteDiv.querySelector('.note-card-title').textContent = title;
     noteDiv.querySelector('.note-card-description').textContent = description;
+    noteDiv.querySelector('.delete-note').addEventListener('click', () => {
+      user.removeNote(notes[i]);
+      document.querySelector('.notes-header').click();
+    });
     
     document.querySelector('.main-content').appendChild(noteDiv);
   }
