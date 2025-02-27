@@ -111,8 +111,12 @@
 .section-two {
   display: flex;
   flex:1;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
   max-width: 100%;
+
 
   border-top: 1px solid var(--border);
   margin-top: 8px;
@@ -124,7 +128,19 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   /* flex: 1; */
-  max-width: 100%;
+  max-width: 95%;
+}
+
+.delete-task {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: all ease-in-out 2ms;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
 }
 
 .invisible {

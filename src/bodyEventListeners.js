@@ -144,11 +144,11 @@ function displayProjectTasks(proj, user) {
   }
 
   for (let i = 0; i < l; i++) {
-    createTaskCard(tasks[i], user);
+    createTaskCard(tasks[i], user, proj);
   }
 } 
 
-function createTaskCard(task, user) {
+function createTaskCard(task, user, proj = null) {
   // Get template
   const temp = document.querySelector('#task-element');
 
@@ -190,6 +190,15 @@ function createTaskCard(task, user) {
     const copy = task;
     TaskManager.markComplete(task);
     user.updateTask(copy, task);
+  });
+
+  // Trash listener
+  taskDiv.querySelector('.delete-task').addEventListener('click', () => {
+    user.removeTask(task);
+    if (proj !== null) {
+      ProjectManager.removeTask(proj, task);
+    }
+    document.querySelector('.sidebar-current').click();
   });
   
   document.querySelector('.main-content').appendChild(taskDiv);
